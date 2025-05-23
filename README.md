@@ -1,10 +1,8 @@
 # SpaceAngency
-======
 
 ## Sistema de Gestión de Expediciones Espaciales
-======
-# Contexto General
-======
+
+### Contexto General
 La Agencia Espacial administra una flota de naves que participan en diversas misiones
 interplanetarias. Cada nave espacial tiene características comunes, pero también atributos
 específicos dependiendo de su tipo.
@@ -16,12 +14,12 @@ La agencia gestiona los siguientes tipos de naves:
     toneladas.
 - 🚀 Cruceros Estelares: Transportan pasajeros a través del espacio profundo.
     Requisitos del Sistema
-# Todas las naves poseen:
+### Todas las naves poseen:
 - nombre (String)
 - capacidad de tripulación (int)
 - año de lanzamiento (int)
 
-# Las subclases poseen atributos adicionales
+### Las subclases poseen atributos adicionales
 
 |Tipo Nave          | Atributos específicos                            |
 |-------------------|--------------------------------------------------|
@@ -29,20 +27,20 @@ La agencia gestiona los siguientes tipos de naves:
 |Carguero           | capacidadCarga: entre 100 y 500 toneladas        |
 |Crucero            | Estelar cantidadPasajeros (int)                  |
 
-# Comportamientos comunes:
+### Comportamientos comunes:
 - mostrarNaves(): muestra todas las naves con sus datos.
 - agregarNave(Nave nave): agrega una nave si no existe ya una con el mismo nombre y año
 - iniciarExploracion(): Inicia la misión para naves explorables (Exploración y Cargueros). Los
   Cruceros no participan y se informa por consola.
 
-# Métodos de comparación:
+### Métodos de comparación:
 - Dos naves se consideran iguales si tienen el mismo nombre y el mismo año de
   lanzamiento.
 - Se implementa ```javaComparable<Nave>``` para ordenar por:
 - Año de lanzamiento (más reciente primero)
 - Capacidad de tripulación (mayor a menor)
 
-# Funcionalidades disponibles desde el menú por consola
+### Funcionalidades disponibles desde el menú por consola
 1. Agregar nave (Exploración, Carguero o Crucero Estelar)
 2. Mostrar todas las naves registradas.
 3. Iniciar misión de exploración
@@ -51,7 +49,7 @@ La agencia gestiona los siguientes tipos de naves:
 6. Mostrar naves ordenadas por capacidad de tripulación descendente.
 7. Salir del Sistema
 
-# Validaciones
+### Validaciones
 - La validación de la capacidad de carga (100 a 500) se realiza antes de instanciar el
   objeto carguero u otra opción si se ingresa un valor menor a 100 setear a 100
   análogamente para el límite superior.
@@ -59,7 +57,6 @@ La agencia gestiona los siguientes tipos de naves:
   mensajes amigables.
 - El uso de equals() permite validar duplicados de forma clara y reutilizable
 
-======
 > [!TIP]
 > Ejemplo de ejecución
 ```console
@@ -87,14 +84,13 @@ Año de lanzamiento: 2047
 Capacidad de carga (100 a 500): 450  
 Nave agregada con éxito.
 ```
-======
 
-# A partir del enunciado anterior, se solicita:
+### A partir del enunciado anterior, se solicita:
 1. Realizar el diagrama de clases completo utilizando umletino, mostrando la relación
    entre Nave, NaveExploracion, Carguero, CruceroEstelar y demás.
 2. Implementar el código fuente en Java que resuelva las funcionalidades solicitadas.
 
-# Detalles adicionales:
+### Detalles adicionales:
 
 * Diagrama de Clases:
     - Debe reflejar correctamente la jerarquía de clases entre las naves.
@@ -117,8 +113,8 @@ Nave agregada con éxito.
       misiones.
     - Desarrolle los métodos necesarios para asegurar su funcionalidad
 
-======
-# Ejemplos de escenarios:
+
+### Ejemplos de escenarios:
 1. Agregar naves espaciales:
     - Se debe poder agregar un carguero llamado "Galáctica" con una capacidad de
       carga de 300 toneladas, y al intentar agregar otra nave con el mismo nombre y
@@ -132,7 +128,7 @@ Nave agregada con éxito.
       misión, mientras que debe indicar que los cruceros estelares no pueden participar.
 
 -------
-# Tabla de datos de prueba para la agencia espacial
+## Tabla de datos de prueba para la agencia espacial
 | Tipo de Nave         | Nombre           | Cap. Tripulación | Año Lanzamiento | Atributo Específico              |
 |-----------------------|------------------|------------------|-----------------|-----------------------------------|
 | Nave de Exploración   | Odisea           | 10               | 2050            | Misión: INVESTIGACIÓN             |
@@ -147,7 +143,7 @@ Nave agregada con éxito.
 
 
 -------
-# Escenarios de prueba funcional
+## Escenarios de prueba funcional
 | Nº | Escenario                              | Entrada / Acción                                      | Resultado Esperado                                                                 |
 |----|----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------|
 | 1  | Agregar nave de exploración válida     | Nombre: Odisea, Año: 2050, Misión: INVESTIGACIÓN      | Nave agregada correctamente                                                       |
@@ -162,7 +158,7 @@ Nave agregada con éxito.
 | 10 | Ordenar por capacidad de tripulación (Comparator) | Acción: opción 6                              | Lista ordenada por mayor capacidad de tripulación primero                         |
 
 -------
-# Escenarios de Validación y Manejo de Errores
+## Escenarios de Validación y Manejo de Errores
 | Nº | Escenario                           | Entrada / Acción                 | Resultado Esperado                          |
 |:--:|:-----------------------------------:|:--------------------------------:|:-------------------------------------------:|
 | 11 | Cargar nave con año negativo       | Año de lanzamiento: -2030        | Rechazo o mensaje de validación previa      |
