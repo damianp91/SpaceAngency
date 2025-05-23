@@ -1,0 +1,17 @@
+<project name="Parcial_I" default="run" basedir=".">
+  <property name="src" location="src/main/java"/>
+  <property name="build" location="build"/>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${build}"/>
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false" source="21" target="21"/>
+  </target>
+
+  <target name="run" depends="compile">
+    <java classname="com.damianp.Parcial_I.Main" classpath="${build}"/>
+  </target>
+</project>
