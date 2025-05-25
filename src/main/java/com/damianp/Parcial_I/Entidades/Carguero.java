@@ -1,29 +1,17 @@
 package com.damianp.Parcial_I.Entidades;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author damianp
  */
 public class Carguero extends Nave{
   private int capacidadCarga;
-  private List<Nave> listaCargueros;
 
   // Constructor
   public Carguero(String nombre, int tripulacion,
     int anio, int capacidad) {
     super(nombre, tripulacion, anio);
-    if(capacidad >= 100 && capacidad <= 500) {
-      this.capacidadCarga = capacidad;
-    }
-    else {
-      System.out.println("Debe ser un numero entre 100 y 500");
-    }
-    this.listaCargueros = new ArrayList<>();
-
+    this.capacidadCarga = capacidad;
   }
 
   // Getters y Setters
@@ -32,7 +20,15 @@ public class Carguero extends Nave{
   }
 
   public void setCapacidadCarga(int capacidadCarga) {
-    if(capacidadCarga >= 100 && capacidadCarga <= 500) {
+    if(capacidadCarga < 100) {
+      System.out.println("Capacidad de carga menor a 100. Se ajusta a 100 toneladas.");
+      this.capacidadCarga = 100;
+    }
+    else if(capacidadCarga > 500){
+      System.out.println("Capacidad de carga mayor a 500. Se ajusta a 500 toneladas");
+      this.capacidadCarga = 500;
+    }
+    else {
       this.capacidadCarga = capacidadCarga;
     }
   }   
@@ -40,30 +36,23 @@ public class Carguero extends Nave{
   // Metodos
   @Override
   public void mostrarNave() {
-    System.out.println("\nNave: " + getNombre() + "\n" +
-      "Tipo nave: Carguero\n" + "Capacidad: " + capacidadCarga);
+    System.out.println(String.format("""
+      Nombre:
+      Tipo: Carguero. 
+      Cap Tripulacion: 
+      Anio Lanzamiento: 
+      "Capacidad carga (en toneladas):
+      """,
+      getNombre(),
+      getCapacidadTripulacion(),
+      getAnioLanzamiento(),
+      capacidadCarga
+    ));
   }
 
   @Override
-  public boolean agregarNave(Nave nave) {
-    boolean agregado = false;
-    if(!listaCargueros.contains(nave)) {
-      listaCargueros.add(nave);
-      agregado = true;
-    }
-    else {
-      System.out.println("Nave ya esta en lista.");
-    }
-    return agregado;
-  }
-
-  public void mostrarFlota() {
-    System.out.println("===\tFLOTA CARGUEROS\t===");
-    if(listaCargueros.isEmpty()) {
-      System.out.println("Lista vacia");
-    }
-    listaCargueros.forEach(nave -> {
-      System.out.println("Explorador: " + nave);
-    });
+  public void iniciarExploracion() {
+    System.out.println("Carguero " + getNombre() + "inicia mision de " +
+    "exploracion.");
   }
 }

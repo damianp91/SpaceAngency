@@ -1,8 +1,5 @@
 package com.damianp.Parcial_I.Entidades;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author damianp
@@ -10,14 +7,12 @@ import java.util.List;
 public class CruceroEstelar extends Nave{
   // Atributos
   private int cantidadPasajeros;
-  private List<Nave> listaCruceroEstelar;
 
   // Constructor
   public CruceroEstelar(String nombre, int tripulacion,
     int anio, int cantidad) {
     super(nombre, tripulacion, anio);
     this.cantidadPasajeros = cantidad;
-    this.listaCruceroEstelar = new ArrayList<>();
   }
 
   // Getters y Setters
@@ -32,31 +27,24 @@ public class CruceroEstelar extends Nave{
   // Metodos
   @Override
   public void mostrarNave() {
-    System.out.println("\nNave: " + getNombre() + "\n" +
-      "Tipo nave: Crucero Estelar\n" + "Cantidad Pasajeros: " +
-      cantidadPasajeros);
+    System.out.println(String.format("""
+      Nombre: %s
+      Tipo: Crucero Estelar 
+      Cap Tripulacion: %d  
+      Anio Lanzamiento: %d
+      Cant. de pasajeros: %d
+      """,
+      getNombre(),
+      getCapacidadTripulacion(),
+      getAnioLanzamiento(),
+      cantidadPasajeros
+    ));
   }
 
   @Override
-  public boolean agregarNave(Nave nave) {
-    boolean agregado = false;
-    if(!listaCruceroEstelar.contains(nave)) {
-      listaCruceroEstelar.add(nave);
-      agregado = true;
-    }
-    else {
-      System.out.println("Nave ya esta en lista.");
-    }
-    return agregado;
+  public void iniciarExploracion() {
+    System.out.println("Crucero Estelar " + getNombre() + "no participa" +
+    " de misiones de exploracion");
   }
 
-  public void mostrarFlota() {
-    System.out.println("===\tFLOTA CRUCERO ESTELAR\t===");
-    if(listaCruceroEstelar.isEmpty()) {
-      System.out.println("Lista vacia");
-    }
-    listaCruceroEstelar.forEach(nave -> {
-      System.out.println("Explorador: " + nave);
-    });
-  }
 }

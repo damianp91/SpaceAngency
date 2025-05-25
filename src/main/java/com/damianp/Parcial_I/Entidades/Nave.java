@@ -5,7 +5,9 @@ import java.util.Objects;
 /**
  *
  * @author damianp
+ *
  */
+
 public abstract class Nave implements Comparable<Nave> {
   // Atributos
   private String nombre;
@@ -13,13 +15,17 @@ public abstract class Nave implements Comparable<Nave> {
   private int anioLanzamiento;
 
   // Constructor
+  /**
+   * Constructor con los siguientes parametros.
+   * @param nombre de tipo String Nombre de la nave
+   * @param capacidad capacidad de la nave tipo int
+   * @param anio anio de lanzamiento de tipo int
+   */
   public Nave(String nombre, int capacidad, int anio) {
     this.nombre = nombre;
     this.capacidadTripulacion = capacidad;
     this.anioLanzamiento = anio;
   }
-
-  public abstract void mostrarNave();
 
   // Gettes y Setters
   public String getNombre() {
@@ -49,14 +55,13 @@ public abstract class Nave implements Comparable<Nave> {
   // Metodos
   @Override
   public boolean equals(Object obj) {
-    if(this == obj){return true;}
-    if(obj == null) {return false;}
-    if(getClass() != obj.getClass()) {
-      return false;
-    }
+    if(this == obj) return true; 
+    if(obj == null) return false; 
+    if(getClass() != obj.getClass()) return false;
     Nave nav = (Nave) obj;
+   
     return Objects.equals(nombre, nav.nombre) &&
-    Objects.equals(anioLanzamiento, nav.anioLanzamiento);
+      Objects.equals(anioLanzamiento, nav.anioLanzamiento);
   }
 
   @Override
@@ -64,16 +69,27 @@ public abstract class Nave implements Comparable<Nave> {
     return Objects.hash(nombre, anioLanzamiento);
   }
 
-  public abstract boolean agregarNave(Nave nave);
-
   @Override
   public int compareTo(Nave otraNave) {
     if(this.anioLanzamiento != otraNave.anioLanzamiento) {
       // Lo organiza descendentemente
-      return Integer.compare(otraNave.anioLanzamiento, this.anioLanzamiento);
+      return Integer.compare(otraNave.anioLanzamiento,
+        this.anioLanzamiento);
     }
     else {
-      return Integer.compare(otraNave.capacidadTripulacion, this.capacidadTripulacion);
+      return Integer.compare(otraNave.capacidadTripulacion,
+        this.capacidadTripulacion);
     }
   }
+ 
+  /**
+   * Muestra la nave con sus datos.
+   */
+  public abstract void mostrarNave();
+
+  /**
+   * Inicia la misión para naves explorables (Exploración y Cargueros)
+   */
+  public abstract void iniciarExploracion();
+ 
 }
