@@ -20,17 +20,7 @@ public class Carguero extends Nave{
   }
 
   public void setCapacidadCarga(int capacidadCarga) {
-    if(capacidadCarga < 100) {
-      System.out.println("Capacidad de carga menor a 100. Se ajusta a 100 toneladas.");
-      this.capacidadCarga = 100;
-    }
-    else if(capacidadCarga > 500){
-      System.out.println("Capacidad de carga mayor a 500. Se ajusta a 500 toneladas");
-      this.capacidadCarga = 500;
-    }
-    else {
-      this.capacidadCarga = capacidadCarga;
-    }
+    this.capacidadCarga = Math.max(100, Math.min(500, capacidadCarga));
   }   
 
   // Metodos

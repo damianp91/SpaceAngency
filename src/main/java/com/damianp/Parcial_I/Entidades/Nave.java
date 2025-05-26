@@ -1,5 +1,6 @@
 package com.damianp.Parcial_I.Entidades;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -58,8 +59,8 @@ public abstract class Nave implements Comparable<Nave> {
     if(this == obj) return true; 
     if(obj == null) return false; 
     if(getClass() != obj.getClass()) return false;
-    Nave nav = (Nave) obj;
-   
+    
+    Nave nav = (Nave) obj; 
     return Objects.equals(nombre, nav.nombre) &&
       Objects.equals(anioLanzamiento, nav.anioLanzamiento);
   }
@@ -70,16 +71,32 @@ public abstract class Nave implements Comparable<Nave> {
   }
 
   @Override
-  public int compareTo(Nave otraNave) {
-    if(this.anioLanzamiento != otraNave.anioLanzamiento) {
+  public int compareTo(Nave nave) {
+    if(this.anioLanzamiento != nave.anioLanzamiento) {
       // Lo organiza descendentemente
-      return Integer.compare(otraNave.anioLanzamiento,
+      return Integer.compare(nave.anioLanzamiento,
         this.anioLanzamiento);
     }
     else {
-      return Integer.compare(otraNave.capacidadTripulacion,
+      return Integer.compare(nave.capacidadTripulacion,
         this.capacidadTripulacion);
     }
+  }
+
+  // Comparadores estáticos para otros órdenes
+  public static Comparator<Nave> porNombre() {
+    return (n1, n2) -> n1.getNombre().compareTo(n2.getNombre());
+  }
+
+  public static Comparator<Nave> porAnioDescendente() {
+    // Reutilizo la logica del compareTo que ya lo ordena
+    // por el criterio de año descendente
+    return Nave::compareTo;
+  }
+
+  public static Comparator<Nave> porCapacidadDescendente() {
+    return (n1, n2) -> Integer.compare(n2.capacidadTripulacion,
+      n1.capacidadTripulacion);
   }
  
   /**
