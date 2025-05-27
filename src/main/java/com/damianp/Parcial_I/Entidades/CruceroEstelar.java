@@ -43,7 +43,7 @@ public class CruceroEstelar extends Nave{
 
   @Override
   public void iniciarExploracion() {
-    System.out.println("Crucero Estelar " + getNombre() + "no participa" +
+    System.out.println("Crucero Estelar " + getNombre() + " no participa" +
     " de misiones de exploracion");
   }
 

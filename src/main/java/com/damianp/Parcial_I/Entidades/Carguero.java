@@ -27,11 +27,11 @@ public class Carguero extends Nave{
   @Override
   public void mostrarNave() {
     System.out.println(String.format("""
-      Nombre:
+      Nombre: %s
       Tipo: Carguero. 
-      Cap Tripulacion: 
-      Anio Lanzamiento: 
-      "Capacidad carga (en toneladas):
+      Cap Tripulacion: %d 
+      Anio Lanzamiento: %d
+      Capacidad carga (en toneladas): %d
       """,
       getNombre(),
       getCapacidadTripulacion(),
@@ -42,7 +42,7 @@ public class Carguero extends Nave{
 
   @Override
   public void iniciarExploracion() {
-    System.out.println("Carguero " + getNombre() + "inicia mision de " +
+    System.out.println("Carguero " + getNombre() + " inicia mision de " +
     "exploracion.");
   }
 }

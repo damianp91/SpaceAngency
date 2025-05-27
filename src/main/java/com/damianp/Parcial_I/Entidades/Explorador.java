@@ -43,8 +43,8 @@ public class Explorador extends Nave{
   
   @Override
   public void iniciarExploracion() {
-    System.out.println("Nave de exploracion :" + getNombre() +
-      "inicioa mision de exploracion de tipo: " + mision);
+    System.out.println("Nave de exploracion: " + getNombre() +
+      " inicia mision de exploracion de tipo: " + mision);
   }
  
 }

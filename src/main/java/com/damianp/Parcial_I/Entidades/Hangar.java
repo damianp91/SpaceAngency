@@ -60,11 +60,11 @@ public class Hangar {
       """);
     int eleccion = leerEntero();
     
-    System.out.println("Nombre: ");
+    System.out.print("Nombre: ");
     String nombre = leerString();
-    System.out.println("Capacidad tripulacion: ");
+    System.out.print("Capacidad tripulacion: ");
     int tripulacion = leerEntero();
-    System.out.println("Anio de lanzamiento: ");
+    System.out.print("Anio de lanzamiento: ");
     int anio = leerEntero();
     
     // este switch se lo denomina switch expression que es diferente a
@@ -91,7 +91,7 @@ public class Hangar {
         yield new Explorador(nombre, tripulacion, anio, tipo);
       }
       case 2 -> {
-        System.out.println("Capacidad de carga (toneladas): ");
+        System.out.print("Capacidad de carga (toneladas): ");
         int carga = leerEntero();
         // Se evalua de adentro hacia fuera con un ajuste por
         // limites o 'clamping'
@@ -99,7 +99,7 @@ public class Hangar {
         yield new Carguero(nombre, tripulacion, anio, carga);
       }
       case 3 -> {
-        System.out.println("Cantidad de pasajeros: ");
+        System.out.print("Cantidad de pasajeros: ");
         int pasajeros = leerEntero();
         yield new CruceroEstelar(nombre, tripulacion, anio, pasajeros);
       }
@@ -116,11 +116,7 @@ public class Hangar {
    * @return false si existe nave true en caso contrario
    */
   public boolean agregarNave(Nave nave) {
-    boolean agregar = false;
-    if(!flota.contains(nave)) {
-      agregar = true;
-    }
-    return agregar;
+    return nave != null && !flota.contains(nave);
   }
 
   /**
@@ -140,23 +136,28 @@ public class Hangar {
    */
   public void iniciarExploracion() {
     System.out.println("===\t INICIO DE EXPLORACION\t===\t");
-
     flota.forEach(nave -> {
       nave.iniciarExploracion();
     });
-    System.out.println("============================");
+    System.out.println("=======================================");
   }
   
   public void ordenarPorNombre() {
-    Nave.porNombre();
+    System.out.println("Ordenamiento por nombre.");
+    flota.sort(Nave.porNombre());
+    mostrarNaves();
   }
 
   public void ordenarPorAnioDesc() {
-    Nave.porAnioDescendente();
+    System.out.println("Ordenamiento por anio");
+    flota.sort(Nave.porAnioDescendente());
+    mostrarNaves();
   }
 
   public void ordenarPorCapacidadDesc() {
-    Nave.porCapacidadDescendente();
+    System.out.println("Ordenamiento por capacidad");
+    flota.sort(Nave.porCapacidadDescendente());
+    mostrarNaves();
   }
 
   public void menuPrincipal() {
@@ -179,8 +180,13 @@ public class Hangar {
       switch (opcion) {
         case 1 -> {
           Nave nave = crearNave();
-          if(agregarNave(nave)){
+          if(nave != null && agregarNave(nave)){
             flota.add(nave);
+            System.out.println("Nave agregada con exito.");
+          }
+          else if(nave == null) {
+            System.out.println("No ingreso datos a nave. No se agregara" +
+              "a lista de Hagar");
           }
           else {
             System.out.println("Nave " + nave.getNombre() + "no se puede agregar." +
@@ -192,9 +198,7 @@ public class Hangar {
             System.out.println("En este momento el Hangar no cuenta con naves.");
           }
           else {
-            flota.forEach(nave -> {
-              nave.mostrarNave();
-            });
+            mostrarNaves();
           }
         }
         case 3 -> {
@@ -202,9 +206,7 @@ public class Hangar {
             System.out.println("En este momento el Hangar no cuenta con naves.");
           }
           else {
-            flota.forEach(nave -> {
-              nave.iniciarExploracion();
-            });
+            iniciarExploracion();
           }
         }
         case 4 -> {
