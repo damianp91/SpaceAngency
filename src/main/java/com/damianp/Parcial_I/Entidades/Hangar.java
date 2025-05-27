@@ -22,7 +22,7 @@ public class Hangar {
    */
   private int leerEntero() {
     while(!scanner.hasNextInt()) {
-      System.out.println("Debe ingresar un numero: ");
+      System.out.print("Debe ingresar un numero: ");
       // Limpia consola
       scanner.next();
     }
@@ -32,18 +32,30 @@ public class Hangar {
     return elemento;
   }
 
+  private String toCapitalice(String p) {
+    String[] array = p.split(" ");
+    for(int i = 0; i < array.length; i ++) {
+      array[i] = array[i].substring(0, 1).toUpperCase() + 
+        array[i].substring(1).toLowerCase();
+    }
+    p = String.join(" ", array);
+    return p;
+  }
+
   /**
    * Verifica que el elemento ingresado tenga por lo menos un caracter.
    * @return Si hay caracteres retorna un valor de tipo String
    */
   private String leerString() {
-    while(!scanner.hasNext(".+")) {
-      System.out.println("Debe ingresar al menos 1 caracter.");
-      scanner.next();
-    }
-    String elemento = scanner.next();
-    scanner.nextLine();
-    return elemento;
+    String palabra = "";
+    do {
+      palabra = scanner.nextLine().trim();
+      if(palabra.isEmpty()) {
+        System.out.print("Debe ingresar al menos un caracter para identificar: " +
+        "a la nave.");
+      }
+    } while(palabra.isEmpty());
+    return palabra;
   }
 
   /**
@@ -88,7 +100,7 @@ public class Hangar {
         else {
           tipo = TipoMision.CONTACTO;
         }
-        yield new Explorador(nombre, tripulacion, anio, tipo);
+        yield new Explorador(toCapitalice(nombre), tripulacion, anio, tipo);
       }
       case 2 -> {
         System.out.print("Capacidad de carga (toneladas): ");
@@ -96,12 +108,12 @@ public class Hangar {
         // Se evalua de adentro hacia fuera con un ajuste por
         // limites o 'clamping'
         carga = Math.max(100, Math.min(500, carga));
-        yield new Carguero(nombre, tripulacion, anio, carga);
+        yield new Carguero(toCapitalice(nombre), tripulacion, anio, carga);
       }
       case 3 -> {
         System.out.print("Cantidad de pasajeros: ");
         int pasajeros = leerEntero();
-        yield new CruceroEstelar(nombre, tripulacion, anio, pasajeros);
+        yield new CruceroEstelar(toCapitalice(nombre), tripulacion, anio, pasajeros);
       }
       default -> {
         System.out.println("Eleccion invalida.");
@@ -123,11 +135,11 @@ public class Hangar {
    * Muestra todas las naves con sus datos.
    */
   public void mostrarNaves() {
-    System.out.println("===\t NAVES EN HANGAR\t===\t");
+    System.out.println("===\t NAVES EN HANGAR\t===\n");
     flota.forEach(nave -> {
       nave.mostrarNave();
     });
-    System.out.println("============================");
+    System.out.println("======================================");
   }
 
   /**
@@ -135,7 +147,7 @@ public class Hangar {
    * Los Cruceros no participan y se informa por consola.
    */
   public void iniciarExploracion() {
-    System.out.println("===\t INICIO DE EXPLORACION\t===\t");
+    System.out.println("===\t INICIO DE EXPLORACION\t===\n");
     flota.forEach(nave -> {
       nave.iniciarExploracion();
     });
