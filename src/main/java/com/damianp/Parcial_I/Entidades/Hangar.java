@@ -32,6 +32,12 @@ public class Hangar {
     return elemento;
   }
 
+  /**
+   * Metodo encargado de capitalizar una palabra o palabras
+   * @param p De tipo String elemento a capitalizar
+   * @return De String elemento con su primer caracter en 
+   *  mayusculas.
+   */
   private String toCapitalice(String p) {
     String[] array = p.split(" ");
     for(int i = 0; i < array.length; i ++) {
