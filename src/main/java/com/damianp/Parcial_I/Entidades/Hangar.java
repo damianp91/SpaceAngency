@@ -198,13 +198,9 @@ public class Hangar {
       switch (opcion) {
         case 1 -> {
           Nave nave = crearNave();
-          if(nave != null && agregarNave(nave)){
+          if(agregarNave(nave)){
             flota.add(nave);
             System.out.println("Nave agregada con exito.");
-          }
-          else if(nave == null) {
-            System.out.println("No ingreso datos a nave. No se agregara" +
-              "a lista de Hagar");
           }
           else {
             System.out.println("Nave " + nave.getNombre() + "no se puede agregar." +
