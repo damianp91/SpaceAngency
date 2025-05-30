@@ -65,6 +65,21 @@ public class Hangar {
   }
 
   /**
+   * Verifica que un número esté dentro de un rango
+   * @param n valor a verificar
+   * @param min mínimo del rango (inclusive)
+   * @param max máximo del rango (inclusive)
+   * @return valor dentro del rango
+   */
+  private int intervalo(int n, int min, int max) {
+    while(n < min || n > max) {
+      System.out.println("Debe ingresar un numero en el rango " + min + "-" + max);
+      n = leerEntero();
+    }
+    return n;
+  }
+
+  /**
    * Crea una nueva instancia del objeto Nave segun eleccion del usuario
    * usando el metodo switch expression 'switch {case -> {...}}'
    * @return
@@ -76,14 +91,14 @@ public class Hangar {
       2. Carguero
       3. Crucero Estelar
       """);
-    int eleccion = leerEntero();
+    int eleccion = intervalo(leerEntero(), 1, 3);
     
     System.out.print("Nombre: ");
     String nombre = leerString();
     System.out.print("Capacidad tripulacion: ");
-    int tripulacion = leerEntero();
+    int tripulacion = intervalo(leerEntero(), 2, 35);
     System.out.print("Anio de lanzamiento: ");
-    int anio = leerEntero();
+    int anio = intervalo(leerEntero(), 2000, 3000);
     
     // este switch se lo denomina switch expression que es diferente a
     // switch statement que es el convencional.
@@ -95,7 +110,7 @@ public class Hangar {
           2. INVESTIGACIÓN
           3. CONTACTO
           """);
-        int eleccionMision = leerEntero();
+        int eleccionMision = intervalo(leerEntero(), 1, 3);
         TipoMision tipo;
         if(eleccionMision == 1) {
           tipo = TipoMision.CARTOGRAFIA;
@@ -118,7 +133,7 @@ public class Hangar {
       }
       case 3 -> {
         System.out.print("Cantidad de pasajeros: ");
-        int pasajeros = leerEntero();
+        int pasajeros = intervalo(leerEntero(), 10, 180);
         yield new CruceroEstelar(toCapitalice(nombre), tripulacion, anio, pasajeros);
       }
       default -> {
